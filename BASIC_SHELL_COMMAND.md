@@ -156,7 +156,8 @@ $lookup szintaxisa:
 ```
 
 ```
-Példa: ("great" szóval kezdődik a címe és 3db kommentet kapott)
+Példa: A movies és a comments kollekció összekapcsolása
+("great" szóval kezdődik a címe és 3db kommentet kapott a film)
 db.movies.aggregate([
     {$match: {title: /^great/i}},
     {$lookup: {
@@ -169,3 +170,24 @@ db.movies.aggregate([
     {$project: {title:1 , comments: 1}}
 ])
 ```
+
+## 3.3 Módosítás (Update)
+- $set (beállító) operátor használata, egy dokumentum módosítása
+```
+db.movies.updateOne({_id: ObjectId("573a1393f29313caabcdc87b")}, {$set: {"imdb.rating": 1}})
+```
+- $mul (szorzás) operátor használata, több dokumentum módosítása
+```
+db.movies.updateMany({countries: "Hungary"}, {$mul: {"imdb.rating": 2}})
+```
+- $inc (increment: növelés, negatív is lehet a növekmény) operátor használata, több dokumentum módosítása
+```
+db.movies.updateMany({countries: "Hungary"}, {$inc: {"imdb.rating": -3}})
+```
+
+## 3.4 Törlés (Delete)
+- Egy dokumentum törlése
+```
+db.movies.deleteOne({_id: ObjectId("573a1393f29313caabcdc87b")}),
+```
+- Kollekció minden dolkumentumának a törlése
