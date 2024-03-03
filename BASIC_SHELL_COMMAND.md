@@ -141,7 +141,40 @@ db.movies.find({year: {$gt: 1995, $lte: 2000}, countries: "Hungary"}, {year: 1})
 db.movies.find({$or:[{countries: "Hungary"}, {countries: "Germany"}]}, {countries: 1})
 db.movies.find({$or:[{title: /^seven/i}, {title: /eight$/i}]}, {title: 1})
 ```
-- Két tábla összekapcsolása: lookup (mongoose: populate)
+## 3.3 Módosítás (Update)
+- $set (beállító) operátor használata, egy dokumentum módosítása
+```
+db.movies.updateOne({_id: ObjectId("573a1393f29313caabcdc87b")}, {$set: {"imdb.rating": 1}})
+```
+- $mul (szorzás) operátor használata, több dokumentum módosítása
+```
+db.movies.updateMany({countries: "Hungary"}, {$mul: {"imdb.rating": 2}})
+```
+- $inc (increment: növelés, negatív is lehet a növekmény) operátor használata, több dokumentum módosítása
+```
+db.movies.updateMany({countries: "Hungary"}, {$inc: {"imdb.rating": -3}})
+```
+
+## 3.4 Törlés (Delete)
+- Egy dokumentum törlése
+```
+db.movies.deleteOne({_id: ObjectId("573a1393f29313caabcdc87b")}),
+```
+- Több dokumentum törlése
+```
+db.movies.deleteMany({countries: "Romania"})
+```
+- Teljes kollekció eldobása
+```
+db.movies.drop()
+```
+
+# 4. MongoDB - Aggregation Pipeline
+- Aggregation with the orders Data Set (in sample_examples databse)
+
+> MongoDB Manual: [https://www.mongodb.com/docs/manual/core/aggregation-pipeline/](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/)
+
+- Két tábla összekapcsolása: $lookup (mongoose: populate parancs is használható)
 ```
 $lookup szintaxisa:
 {
@@ -170,24 +203,6 @@ db.movies.aggregate([
     {$project: {title:1 , comments: 1}}
 ])
 ```
+- Aggregation with the Zip Code Data Set (in sample_training databse)
 
-## 3.3 Módosítás (Update)
-- $set (beállító) operátor használata, egy dokumentum módosítása
-```
-db.movies.updateOne({_id: ObjectId("573a1393f29313caabcdc87b")}, {$set: {"imdb.rating": 1}})
-```
-- $mul (szorzás) operátor használata, több dokumentum módosítása
-```
-db.movies.updateMany({countries: "Hungary"}, {$mul: {"imdb.rating": 2}})
-```
-- $inc (increment: növelés, negatív is lehet a növekmény) operátor használata, több dokumentum módosítása
-```
-db.movies.updateMany({countries: "Hungary"}, {$inc: {"imdb.rating": -3}})
-```
-
-## 3.4 Törlés (Delete)
-- Egy dokumentum törlése
-```
-db.movies.deleteOne({_id: ObjectId("573a1393f29313caabcdc87b")}),
-```
-- Kollekció minden dolkumentumának a törlése
+> MongoDB Manual: [https://www.mongodb.com/docs/manual/tutorial/aggregation-zip-code-data-set/](https://www.mongodb.com/docs/manual/tutorial/aggregation-zip-code-data-set/)
