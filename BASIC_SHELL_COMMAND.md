@@ -148,8 +148,8 @@ $lookup szintaxisa:
   $lookup:
    {
      from: <összekapcsolandó kollekció neve>,
-     localField: <helyi kapcsolatot tartó mező: PK vagy FK>,
-     foreignField: <távoli kapcsolatot tartó mező: FK vagy PK>,
+     localField: <helyi kapcsolatot tartó mező> (PK vagy FK),
+     foreignField: <távoli kapcsolatot tartó mező> (FK vagy PK),
      as: <kapcsolt mező azonosítója> (típus array)
    }
 }
