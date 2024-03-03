@@ -1,1 +1,1 @@
-{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"8460f43b778d4141a31a307a09989588","collectionName":"embedded_movies","type":"collection"}
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"2f60bf09348e40dfa2cc7faf93bb9d47","collectionName":"embedded_movies","type":"collection"}

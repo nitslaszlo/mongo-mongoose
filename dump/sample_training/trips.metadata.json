@@ -1,1 +1,1 @@
-{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"73cb412b40154bc0b07992d5b3cd7229","collectionName":"trips","type":"collection"}
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"9518de7026bf4fc0a97c16c00add0772","collectionName":"trips","type":"collection"}
