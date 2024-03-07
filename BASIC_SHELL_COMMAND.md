@@ -36,7 +36,7 @@
 
 # 3. CRUD Műveletek
 
-## 3.1 Dokumentum létehozás (Create, nem kell, hogy a tábla ("teszt") létezzen)
+## 3.1 Dokumentum létehozás (HF) (Create, nem kell, hogy a tábla ("teszt") létezzen)
 
 > A MongoDB alapértelmezett elsődleges kulcsa "\_id" nevet kap<br>
 > Ha nem adjuk meg egyedi értékét, akkor a MongoDB hozza létre<br>
@@ -122,12 +122,14 @@ use sample_mflix
 db.movies.find({})
 ```
 
+### 3.2.1 Reguláris kifejezések használata (HF)
 - Szűrés egy feltétel szerint, reguláris kifejezéssel
 
 ```
 db.movies.find({title: /^Best/i})
 ```
 
+### 3.2.2 Logikai operátorok használata használata (HF)
 - És kapcsolat projekcióval és rendezéssel
 > A $and operátor elhagyható, az "és" kapcsolat az alapértelmezés
 
@@ -141,7 +143,14 @@ db.movies.find({year: {$gt: 1995, $lte: 2000}, countries: "Hungary"}, {year: 1})
 db.movies.find({$or:[{countries: "Hungary"}, {countries: "Germany"}]}, {countries: 1})
 db.movies.find({$or:[{title: /^seven/i}, {title: /eight$/i}]}, {title: 1})
 ```
-## 3.3 Módosítás (Update)
+### 3.2.3 Relációs operátorok használata használata (HF)
+
+
+### 3.2.4 Lekérdezés array (tömb, vektor) típusú mezőből (HF)
+
+### 3.2.5 Lekérdezés object típusú mezőből (HF)
+
+## 3.3 Módosítás (Update) (HF)
 - $set (beállító) operátor használata, egy dokumentum módosítása
 ```
 db.movies.updateOne({_id: ObjectId("573a1393f29313caabcdc87b")}, {$set: {"imdb.rating": 1}})
@@ -155,7 +164,7 @@ db.movies.updateMany({countries: "Hungary"}, {$mul: {"imdb.rating": 2}})
 db.movies.updateMany({countries: "Hungary"}, {$inc: {"imdb.rating": -3}})
 ```
 
-## 3.4 Törlés (Delete)
+## 3.4 Törlés (Delete) (H)
 - Egy dokumentum törlése
 ```
 db.movies.deleteOne({_id: ObjectId("573a1393f29313caabcdc87b")}),
@@ -169,7 +178,7 @@ db.movies.deleteMany({countries: "Romania"})
 db.movies.drop()
 ```
 
-# 4. MongoDB - Aggregation Pipeline
+# 4. MongoDB - Aggregation Pipeline (HP)
 - Aggregation with the orders Data Set (in sample_examples databse)
 
 > MongoDB Manual: [https://www.mongodb.com/docs/manual/core/aggregation-pipeline/](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/)
