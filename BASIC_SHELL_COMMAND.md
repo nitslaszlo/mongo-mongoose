@@ -123,10 +123,14 @@ db.movies.find({})
 ```
 
 ### 3.2.1 Reguláris kifejezések használata (HF)
-- Szűrés egy feltétel szerint, reguláris kifejezéssel
+- Szűrés egy feltétel szerint, reguláris kifejezéssel, szó eleji egyezés
 
 ```
 db.movies.find({title: /^Best/i})
+```
+- Szűrés egy feltétel szerint, reguláris kifejezéssel, szó végi egyezés
+```
+db.movies.find({title: /down$/i}, {title: 1})
 ```
 
 ### 3.2.2 Logikai operátorok használata használata (HF)
