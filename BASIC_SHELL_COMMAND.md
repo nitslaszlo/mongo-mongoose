@@ -44,11 +44,15 @@
 
 - Egy dokumentum (rekord) beszúrása
   ```
+  db.teszt.insertOne({nev: "Esze Gábor", kor: NumberInt(28)})
+
   db.teszt.insertOne({nev: "Szabó János", kor: NumberInt(34)})
   ```
 - Több dokumentum beszúrása
   ```
   db.teszt.insertMany([{nev: "Kiss Péter", kor: NumberInt(41)}, {nev: "Török Béla", kor: NumberInt(55)}])
+
+  db.teszt.insertMany([{nev: "Esze GÁbor", kor: NumberInt(28)}, {nev: "Tompos Richárd", kor: NumberInt(27)}])
   ```
 - Függvények használata
   > NumberInt(34) -> Függvény nélkül valós típusú (34.0) lenne az érték
@@ -126,6 +130,8 @@ db.movies.find({})
 - Szűrés egy feltétel szerint, reguláris kifejezéssel, szó eleji egyezés
 
 ```
+db.movies.find({title: /lowdown$/i}, {title: 1})
+
 db.movies.find({title: /^Best/i})
 ```
 - Szűrés egy feltétel szerint, reguláris kifejezéssel, szó végi egyezés
@@ -171,6 +177,8 @@ db.movies.updateMany({countries: "Hungary"}, {$inc: {"imdb.rating": -3}})
 ## 3.4 Törlés (Delete) (H)
 - Egy dokumentum törlése
 ```
+db.teszt.deleteOne({_id: objectid("65f2ef3e4194ff70d0c57416")})
+
 db.movies.deleteOne({_id: ObjectId("573a1393f29313caabcdc87b")}),
 ```
 - Több dokumentum törlése
